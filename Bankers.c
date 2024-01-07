@@ -22,3 +22,29 @@ void main()
         printf("Allocated for process %d:",i+1);
         scanf("%d",&allocate[i]);
         allocateCount+=allocate[i];
+ need[i]=required[i]-allocate[i];
+    }                                                                                                                        
+    int available=max-allocateCount;
+    int count=n,sequence=0;
+    int ans[n],ind=0;
+    for(int i=0; i<n; i++)
+    {
+       for(int j=0; j<n; j++)
+       {
+           if(need[j]!=0)
+           {
+               if(need[j]>available)
+               {
+                   continue;
+               }
+               else
+               {
+                   ans[ind++]=j+1;
+                   sequence++;
+                   count--;
+                   available+=need[j];
+                   need[j]=0;
+               }
+           }
+       }
+
