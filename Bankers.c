@@ -47,4 +47,18 @@ void main()
                }
            }
        }
-
+ }
+    if(sequence<n)
+    {
+        printf("\nThe system is in a unsafe state!!\n");
+    }
+    else
+    {
+        printf("\nThe system is in a safe state!!\n");
+        for(int i=0; i<n; i++)
+        {
+            printf("p%d->",ans[i]);
+        }
+    }
+    
+}
