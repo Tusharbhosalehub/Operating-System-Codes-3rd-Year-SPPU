@@ -7,3 +7,24 @@ echo -e "Choose one of the Following\n1. Create a New Address Book\n2. View Reco
 
 read opt
 case $opt in
+1)
+echo "Enter filename"
+read fileName
+if [ -e $fileName ] ; then	
+rm $fileName
+fi
+cont=1
+echo  "NAME\tNUMBER\t\tADDRESS\n===============================\n" | cat >> $fileName
+while [ "$cont" -gt 0 ]
+do
+echo "\nEnter Name"
+read name
+echo "Enter Phone Number of $name"
+read number
+echo "Enter Address of $name"
+read address
+echo "$name\t$number\t\t$address" | cat >> $fileName
+echo "Enter 0 to Stop, 1 to Enter next"
+read cont
+done
+;;
