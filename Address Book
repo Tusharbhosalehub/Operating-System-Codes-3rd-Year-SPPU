@@ -28,3 +28,24 @@ echo "Enter 0 to Stop, 1 to Enter next"
 read cont
 done
 ;;
+2)
+cat $fileName
+;;
+3)
+echo "\nEnter Name"
+read name
+echo "Enter Phone Number of $name"
+read number
+echo "Enter Address of $name"
+read address
+echo "$name\t$number\t\t$address" | cat >> $fileName
+;;
+4)
+echo "Delete record\nEnter Name/Phone Number"
+read pattern
+temp="temp"
+grep -v $pattern $fileName | cat >> $temp 
+rm $fileName
+cat $temp | cat >> $fileName
+rm $temp
+;;
