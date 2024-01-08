@@ -49,3 +49,23 @@ rm $fileName
 cat $temp | cat >> $fileName
 rm $temp
 ;;
+5)
+echo "Modify record\nEnter Name/Phone Number"
+read pattern
+temp="temp"
+grep -v $pattern $fileName | cat >> $temp
+rm $fileName
+cat $temp | cat >> $fileName
+rm $temp
+echo "Enter Name"
+read name
+echo "Enter Phone Number of $name"
+read number
+echo "Enter Address of $name"
+read address
+echo -e "$name\t$number\t$address" | cat >> $fileName
+;;
+esac
+done
+
+
