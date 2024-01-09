@@ -16,4 +16,12 @@ void bubbleSort(int arr[],int n){
  }
  printf("\n");
 }
+ else{
+ wait(NULL);
+ printf("\n\n\n****** Parent PROCESS ********\n");
+ printf("\nIt is parent process with pid = %d and ppid = %d \n",getpid(),getppid());
+ selectionSort(arr,n);
+ printf("\n ***** PARENT PROCESS TERMINATED *****");
+ }
+}
 
