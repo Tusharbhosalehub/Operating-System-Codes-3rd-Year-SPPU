@@ -27,4 +27,22 @@ void* producer(void* arg) {
     }
     pthread_exit(NULL);
 }
+void* consumer(void* arg) {
+    int item;
+    for (int i = 0; i < *((int*)arg); i++) {
+        sem_wait(&full);
+        pthread_mutex_lock(&mutex);
+
+        // Consume item
+        item = buffer[out];
+        printf("Consumer consumes item: %d\n", item);
+        out = (out + 1) % BUFFER_SIZE;
+
+        pthread_mutex_unlock(&mutex);
+        sem_post(&empty);
+    }
+    pthread_exit(NULL);
+}
+
+
 
