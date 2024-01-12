@@ -67,6 +67,28 @@ int main() {
     for (int i = 0; i < num_producers; i++) {
         pthread_create(&producers[i], NULL, producer, &num_iterations);
     }
+  // Create consumer threads
+    for (int i = 0; i < num_consumers; i++) {
+        pthread_create(&consumers[i], NULL, consumer, &num_iterations);
+    }
+
+    // Wait for producers to finish
+    for (int i = 0; i < num_producers; i++) {
+        pthread_join(producers[i], NULL);
+    }
+
+    // Wait for consumers to finish
+    for (int i = 0; i < num_consumers; i++) {
+        pthread_join(consumers[i], NULL);
+    }
+
+    // Destroy semaphores and mutex
+    sem_destroy(&empty);
+    sem_destroy(&full);
+    pthread_mutex_destroy(&mutex);
+
+    return 0;
+}
 
 
 
