@@ -1,1 +1,11 @@
-
+//READER WRITER PROBLEM
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<semaphore.h>
+#include<unistd.h>
+void *writer_thr(int temp);
+void *reader_thr(int temp);
+sem_t mutex;
+sem_t wrt;
+int readcount=0,nwt,nrd;
