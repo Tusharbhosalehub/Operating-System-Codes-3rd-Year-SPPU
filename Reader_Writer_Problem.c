@@ -39,3 +39,23 @@ for(i=1;i<=nrd;i++)
   sem_destroy(&mutex);
 
 }
+void *reader_thr(int temp)
+{
+  printf("\n Reader %d is trying to enter database for reading.",temp);
+  sem_wait(&mutex);
+  readcount++;
+  if(readcount==1)
+  sem_wait(&wrt);
+   sem_post(&mutex);
+
+  printf("\nReader %d is now reading in database.",temp);
+  sem_wait(&mutex);
+  readcount--;
+  if(readcount==0)
+
+  sem_post(&wrt);  
+  sem_post(&mutex);
+  printf("\nReader %d has left the database.\n",temp);  
+  sleep(3);
+}
+
