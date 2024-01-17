@@ -58,4 +58,13 @@ void *reader_thr(int temp)
   printf("\nReader %d has left the database.\n",temp);  
   sleep(3);
 }
+void *writer_thr(int temp)
+{
+                         printf("\nWriter %d is trying to enter database for modifying data",temp);
+ sem_wait(&wrt);
+ printf("\n Writer %d is writing in database.",temp);
+ sleep(3);
+ printf("\n Writer %d is leaving the database.\n",temp);
+ sem_post(&wrt);
+}
 
